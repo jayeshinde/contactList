@@ -22,8 +22,9 @@ function reducer (state = initialState, action) {
     }
     case LOGIN_REQUEST: {
       const newState = JSON.parse(JSON.stringify(state))
-      newState.contacts = [...state.contacts]
-      newState.contacts.push(action.data)
+      newState.contacts.some(c => c.username === action.data.username) ? 
+        newState.contacts = [...state.contacts] :
+        newState.contacts.push(action.data)
       return {...newState}
     }
     default:
